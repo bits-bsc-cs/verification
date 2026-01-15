@@ -1,0 +1,11 @@
+.env
+.venv
+.ruff_cache
+__pycache__
+
+db/verification.sqlite
+
+client/api_docs.md
+
+discord.log
+otp_debug.log

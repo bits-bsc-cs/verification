@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' http://localhost:5000; object-src 'none'; base-uri 'self'; form-action 'self';"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="BITS Student Community Dashboard" />
+    <title>Dashboard - BITS Student Community</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html"
+        ><img
+          src="src/assets/images/bits-logo.png"
+          alt="BITS logo"
+          class="logo"
+      /></a>
+      <div class="theme-switcher">
+        <button id="theme-toggle" aria-label="Toggle dark theme">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+      </div>
+      <h2>Dashboard</h2>
+    </header>
+    <main class="dashboard-page">
+      <div class="dashboard-container">
+        <h1>Verification Status</h1>
+        <div class="verification-status-card" id="status-card">
+          <h2><span id="status-label">Not Started</span></h2>
+          <p id="status-detail"></p>
+        </div>
+        <div class="user-info-card">
+          <div class="info-item">
+            <label>Email:</label>
+            <span id="display-email">N/A</span>
+          </div>
+          <div class="info-item">
+            <label>Username:</label>
+            <span id="display-username">N/A</span>
+          </div>
+          <div class="info-item">
+            <label>Discord UID:</label>
+            <div class="uid-container">
+              <span id="display-uid">N/A</span>
+            </div>
+            <p class="uid-note">
+              Discord UID is shown only after verification
+            </p>
+          </div>
+        </div>
+        <div class="dashboard-actions">
+          <button id="back-btn" class="sign-out-btn">Back to Verification</button>
+        </div>
+      </div>
+    </main>
+    <script src="src/app.js" type="module"></script>
+    <footer>
+      <p>BITS Student Community · 2026</p>
+    </footer>
+  </body>
+</html>

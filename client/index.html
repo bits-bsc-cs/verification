@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' http://localhost:5000; object-src 'none'; base-uri 'self'; form-action 'self';"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="BITS Student Community Verification" />
+    <title>BITS Student Community</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html"
+        ><img
+          src="src/assets/images/bits-logo.png"
+          alt="BITS logo"
+          class="logo"
+      /></a>
+      <div class="theme-switcher">
+        <button id="theme-toggle" aria-label="Toggle dark theme">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+      </div>
+      <h2>Verify you're a human</h2>
+    </header>
+    <main>
+      <h1 id="verification-title">Student Verification</h1>
+      <p>
+        Authenticate yourself as a
+        <a href="conduct.html" class="conduct-link">good responsible human</a>
+      </p>
+      <div class="verification-row">
+        <div class="input-wrapper username-step" id="step-1">
+          <div class="platform-selector single">
+            <button class="active" aria-label="Discord platform">
+              <img
+                src="src/assets/icons/discord-icon.svg"
+                width="20"
+                height="20"
+                alt="Discord"
+              />
+            </button>
+          </div>
+          <div class="input-container" id="input-container">
+            <span class="prefix" aria-hidden="true">@</span>
+            <input
+              type="text"
+              id="username-input"
+              placeholder="username"
+              aria-label="Discord username"
+            />
+            <button id="submit-btn" disabled aria-label="Submit Discord username">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="input-wrapper email-step" id="step-2" style="display: none">
+          <div class="input-container">
+            <label for="email-input">BITS Email</label>
+            <input
+              type="email"
+              id="email-input"
+              placeholder="you@online.bits-pilani.ac.in"
+              aria-label="BITS Pilani email address"
+            />
+          </div>
+          <div class="button-container">
+            <button
+              id="email-submit-btn"
+              class="email-submit-btn"
+              disabled
+              aria-label="Submit email for verification"
+            >
+              Request OTP
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="input-wrapper otp-step" id="step-3" style="display: none">
+        <div class="input-container">
+          <label for="otp-input">One-time passcode</label>
+          <div class="otp-row">
+            <input
+              type="text"
+              id="otp-input"
+              placeholder="000000"
+              maxlength="6"
+              aria-label="One-time passcode"
+              inputmode="numeric"
+            />
+            <button id="otp-submit-btn" disabled aria-label="Submit OTP">
+              Verify OTP
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="status-panel" aria-live="polite">
+        <p id="status-message"></p>
+        <div class="status-actions">
+          <button id="check-status-btn" class="secondary-btn" disabled>
+            Check Status
+          </button>
+          <button id="resend-otp-btn" class="secondary-btn" disabled>
+            Resend OTP
+          </button>
+        </div>
+      </div>
+      <p class="why-link"><a href="why.html">Why verification?</a></p>
+    </main>
+    <footer>
+      <p>BITS BSc Students' Community · 2026</p>
+    </footer>
+    <script src="src/app.js" type="module"></script>
+  </body>
+</html>
