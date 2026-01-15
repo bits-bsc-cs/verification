@@ -4,6 +4,7 @@
 __pycache__
 
 db/verification.sqlite
+db/verification.db
 
 client/api_docs.md
 
