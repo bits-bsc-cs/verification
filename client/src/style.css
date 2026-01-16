@@ -95,6 +95,7 @@ main {
   flex: 1;
   padding: 40px 20px;
   max-width: 600px;
+  width: 100%;
 }
 
 main h1 {
@@ -127,6 +128,8 @@ main > p {
 .input-wrapper {
   display: inline-block;
   margin: 0 auto 20px;
+  width: auto;
+  max-width: 100%;
 }
 
 .verification-row {
@@ -136,6 +139,47 @@ main > p {
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 16px;
+  width: 100%;
+}
+
+.verification-row .input-wrapper {
+  flex: 1 1 0;
+}
+
+.verification-row .input-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.verification-row .input-wrapper + .input-wrapper {
+  margin-top: 0;
+}
+
+.verification-row.is-email-step .input-wrapper {
+  flex: 1 1 260px;
+}
+
+.verification-row.is-email-step {
+  justify-content: center;
+}
+
+.verification-row.is-email-step .username-step {
+  margin-right: 0;
+}
+
+@media (min-width: 641px) {
+  .verification-row {
+    justify-content: center;
+  }
+
+  .verification-row.is-email-step {
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
+  .verification-row.is-email-step .username-step,
+  .verification-row.is-email-step .email-step {
+    flex: 1 1 0;
+  }
 }
 
 .verification-row .input-wrapper {
@@ -143,13 +187,13 @@ main > p {
 }
 
 .username-step {
-  flex: 1 1 260px;
   max-width: 280px;
+  width: auto;
 }
 
 .email-step {
-  flex: 1 1 260px;
   max-width: 320px;
+  width: auto;
 }
 
 .otp-step {
@@ -158,10 +202,14 @@ main > p {
   margin: 0 auto 24px;
 }
 
+.otp-step .input-container {
+  width: 100%;
+}
+
 .email-step .input-container,
 .otp-step .input-container {
   width: 100%;
-  border: none;
+  border: 1px solid rgba(10, 10, 10, 0.15);
   border-radius: 6px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   background-color: var(--secondary-color);
@@ -198,6 +246,12 @@ main > p {
 [data-theme="dark"] .otp-step #otp-input {
   border-color: rgba(250, 250, 250, 0.25);
   background-color: rgba(10, 10, 10, 0.35);
+}
+
+[data-theme="dark"] .username-step .input-container,
+[data-theme="dark"] .email-step .input-container,
+[data-theme="dark"] .otp-step .input-container {
+  border-color: rgba(250, 250, 250, 0.2);
 }
 
 .email-step .button-container {
@@ -280,6 +334,21 @@ main > p {
     var(--border-color-2),
     var(--border-color-3)
   );
+  width: 100%;
+}
+
+.username-step .input-container {
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  border-radius: 6px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  background-color: var(--secondary-color);
+  padding: 16px;
+  gap: 10px;
+}
+
+.username-step .prefix {
+  background-color: transparent;
+  padding: 10px 0;
 }
 
 .prefix {
@@ -299,15 +368,21 @@ main > p {
 }
 
 #username-input {
-  padding: 14px 16px 14px 4px;
-  border: none;
+  padding: 12px 12px 12px 4px;
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  border-radius: 4px;
   background-color: var(--secondary-color);
   color: var(--primary-color);
   font-size: 14px;
   font-family: inherit;
   outline: none;
   flex: 1;
-  width: 280px;
+  min-width: 0;
+}
+
+[data-theme="dark"] #username-input {
+  border-color: rgba(250, 250, 250, 0.25);
+  background-color: rgba(10, 10, 10, 0.35);
 }
 
 #email-input {
@@ -319,10 +394,11 @@ main > p {
   font-family: inherit;
   outline: none;
   flex: 1;
-  min-width: 280px;
+  min-width: 0;
   border: 1px solid var(--primary-color);
   border-radius: 4px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 #otp-input {
@@ -345,7 +421,7 @@ main > p {
 #submit-btn,
 #email-submit-btn,
 #otp-submit-btn {
-  padding: 14px 20px;
+  padding: 14px 18px;
   background-color: var(--primary-color);
   color: var(--secondary-color);
   border: none;
@@ -357,11 +433,16 @@ main > p {
   opacity: 0.3;
 }
 
+#submit-btn {
+  border-radius: 4px;
+}
+
 .otp-row {
   display: flex;
   gap: 12px;
   width: 100%;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .otp-row #otp-input {
@@ -394,6 +475,7 @@ main > p {
   flex-direction: column;
   gap: 12px;
   align-items: center;
+  width: 100%;
 }
 
 .email-submit-btn,
@@ -407,6 +489,7 @@ main > p {
   cursor: pointer;
   transition: var(--transition);
   min-width: 200px;
+  max-width: 100%;
 }
 
 .email-submit-btn {
@@ -748,4 +831,157 @@ footer {
 .secondary-btn {
   min-width: auto;
   padding: 10px 16px;
+}
+
+@media (max-width: 640px) {
+  header {
+    padding: 40px 16px 24px;
+  }
+
+  .theme-switcher {
+    top: 16px;
+    right: 16px;
+  }
+
+  main {
+    padding: 24px 16px 32px;
+  }
+
+  .verification-row {
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+    margin-bottom: 0;
+  }
+
+  .verification-row.is-email-step {
+    justify-content: flex-start;
+  }
+
+  .verification-row .input-wrapper {
+    flex: 1 1 100%;
+  }
+
+  .username-step,
+  .email-step,
+  .otp-step {
+    max-width: 100%;
+  }
+
+  .input-wrapper {
+    margin-bottom: 0;
+    width: 100%;
+    display: block;
+  }
+
+  .verification-row,
+  .otp-step {
+    margin-bottom: 0;
+  }
+
+  .otp-step {
+    margin-top: 0;
+  }
+
+  .email-step .button-container {
+    margin-top: 0;
+  }
+
+  .status-panel {
+    margin-top: 0;
+    min-height: 0;
+  }
+
+  .status-panel p {
+    min-height: 0;
+    margin: 0;
+  }
+
+  .status-actions {
+    gap: 0;
+  }
+
+  .button-container {
+    gap: 0;
+  }
+
+  .input-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-container .prefix,
+  .input-container .separator {
+    padding: 10px 12px 6px;
+  }
+
+  .input-container .prefix,
+  .input-container .separator {
+    display: none;
+  }
+
+  #username-input {
+    padding: 12px 12px 10px;
+    width: 100%;
+  }
+
+  #submit-btn {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .email-step .input-container,
+  .otp-step .input-container {
+    padding: 14px;
+  }
+
+  .email-step label,
+  .otp-step label {
+    font-size: 11px;
+  }
+
+  .otp-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #otp-submit-btn,
+  #email-submit-btn {
+    width: 100%;
+  }
+
+  #otp-input {
+    text-align: left;
+    letter-spacing: 2px;
+  }
+
+  .button-container,
+  .status-actions {
+    width: 100%;
+  }
+
+  .email-submit-btn,
+  .secondary-btn,
+  .sign-out-btn {
+    width: 100%;
+  }
+
+  .dashboard-page {
+    padding: 24px 16px;
+  }
+
+  .dashboard-container {
+    padding: 24px 16px;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .why-page,
+  .conduct-page {
+    max-width: 100%;
+  }
 }

@@ -17,6 +17,7 @@ const selectors = {
   step1: document.getElementById("step-1"),
   step2: document.getElementById("step-2"),
   step3: document.getElementById("step-3"),
+  verificationRow: document.querySelector(".verification-row"),
   emailInput: document.getElementById("email-input"),
   emailSubmitBtn: document.getElementById("email-submit-btn"),
   otpInput: document.getElementById("otp-input"),
@@ -128,6 +129,9 @@ function updateFormVisibility() {
   if (selectors.step3) {
     const shouldShowOtp = state.status === "pending" && state.otpRequestedAt > 0;
     selectors.step3.style.display = shouldShowOtp ? "block" : "none";
+  }
+  if (selectors.verificationRow) {
+    selectors.verificationRow.classList.toggle("is-email-step", Boolean(state.username));
   }
   if (selectors.displayEmail) selectors.displayEmail.textContent = state.email || "N/A";
   if (selectors.displayUsername) selectors.displayUsername.textContent = state.username || "N/A";
