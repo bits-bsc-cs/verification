@@ -38,6 +38,7 @@ logger = logging.getLogger("discord_bot")
 intents = discord.Intents.default()
 intents.members = True
 intents.guilds = True
+intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -206,7 +207,8 @@ if __name__ == "__main__":
 
     logging.basicConfig(level=logging.INFO)
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
 
     # Register signal handlers for shutdown
     for sig in (signal.SIGINT, signal.SIGTERM):
@@ -219,4 +221,9 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         pass
     finally:
+        pending = asyncio.all_tasks(loop)
+        for task in pending:
+            task.cancel()
+        loop.run_until_complete(asyncio.gather(*pending, return_exceptions=True))
+        loop.run_until_complete(loop.shutdown_asyncgens())
         loop.close()

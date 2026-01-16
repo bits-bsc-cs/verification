@@ -1,0 +1,11 @@
+.git
+.gitignore
+.env
+__pycache__
+.ruff_cache
+npm/
+db/
+discord.log
+otp_debug.log
+*.sqlite
+*.db
