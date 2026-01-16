@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     sender_email: str = (
         os.getenv("SENDER_EMAIL") or "Verification <onboarding@resend.dev>"
     )
+    site_url: str = os.getenv("SITE_URL")
 
 
 settings = Settings()

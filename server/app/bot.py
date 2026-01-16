@@ -173,7 +173,19 @@ async def on_ready():
     await start_ipc_server()
 
 
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    if '!verify' in message.content:
+        await message.channel.send(f"The verification has moved to {settings.site_url}! Please verify there (:")
+
+    pass
+
+
 def verify(username: str):
+
     """
     This is the function called by main.py.
     It communicates with the running bot process via the IPC server.
@@ -181,6 +193,7 @@ def verify(username: str):
 
     returns the dc uid, or null if fails.
     """
+
     url = f"http://localhost:{IPC_PORT}/verify"
     payload = json.dumps({"username": username}).encode("utf-8")
     req = urllib.request.Request(

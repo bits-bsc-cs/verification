@@ -3,9 +3,12 @@ services:
     build: .
     env_file:
       - ./.env # Replace this with your env file on host.
-    expose:
-      - "8000"
-      - "5000"
+    # expose:
+    #   - "8000"
+    #   - "5000"
+    ports:
+      - "5000:5000"
+      - "7800:8000"
     volumes:
       - ./db:/app/db # Replace this with your db folder on host.
     networks:
