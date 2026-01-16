@@ -28,7 +28,7 @@ All requests go to `http://localhost:5000`, so keep ports aligned or update `src
 ## Usage
 
 1. **Enter Discord Username**: Provide your 2-32 character Discord handle.
-2. **Enter Email**: Use your BITS Pilani email ending in `@online.bits-pilani.ac.in`.
+2. **Enter Email**: Use your BITS Pilani email ending in `@*.bits-pilani.ac.in`.
 3. **Request OTP**: Triggers `POST /verify` to send a code (cooldown enforced).
 4. **Check Status**: Uses `GET /verify/status/{email}` to see pending/verified state.
 5. **Submit OTP**: Uses `POST /verify/otp` to complete Discord verification.

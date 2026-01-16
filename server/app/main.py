@@ -88,10 +88,22 @@ def verification_request(
 
     # Email Suffix Check (depends on prod settings set in env file)
     if settings.production:
-        required_suffix = "@online.bits-pilani.ac.in"
-        if not email.endswith(required_suffix):
+        allowed_domains = (
+            "online.bits-pilani.ac.in",
+            "pilani.bits-pilani.ac.in",
+            "hyderabad.bits-pilani.ac.in",
+            "goa.bits-pilani.ac.in",
+            "dubai.bits-pilani.ac.in",
+        )
+        email_domain = email.lower().split("@")[-1]
+        if email_domain not in allowed_domains:
             raise HTTPException(
-                status_code=400, detail="Email must end with " + required_suffix
+                status_code=400,
+                detail=(
+                    "Email must end with @online.bits-pilani.ac.in, "
+                    "@pilani.bits-pilani.ac.in, @hyderabad.bits-pilani.ac.in, "
+                    "@goa.bits-pilani.ac.in, or @dubai.bits-pilani.ac.in"
+                ),
             )
 
     otp_code = "".join(random.choices(string.digits, k=6))

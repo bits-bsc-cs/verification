@@ -1,7 +1,5 @@
 # API Documentation
 
-[THIS DOCUMENTATION IS AI GENERATED BASED ON THE BACKEND'S CODE]
-
 ## Base Configuration
 - **Host**: `http://localhost:5000` (Default deployment port)
 - **Content-Type**: All `POST` requests use `application/x-www-form-urlencoded`

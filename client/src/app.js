@@ -6,7 +6,8 @@ const API_BASE_URL =
   (isLocalHost
     ? `${window.location.protocol}//${window.location.hostname}:${window.API_PORT || API_DEFAULT_PORT}`
     : "");
-const EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@online\.bits-pilani\.ac\.in$/i;
+const EMAIL_PATTERN =
+  /^[a-zA-Z0-9._%+-]+@(online|pilani|hyderabad|goa|dubai)\.bits-pilani\.ac\.in$/i;
 const REQUEST_BUTTON_TEXT = "Request OTP";
 
 const selectors = {
@@ -206,7 +207,7 @@ async function requestOtp() {
     return;
   }
   if (!isValidBitsEmail(state.email)) {
-    setStatus("Use your @online.bits-pilani.ac.in email.", "error");
+    setStatus("Use your @*.bits-pilani.ac.in email.", "error");
     return;
   }
   if (cooldownActive) {
@@ -253,7 +254,7 @@ async function checkStatus(emailOverride) {
     emailOverride || selectors.emailInput?.value || state.email,
   );
   if (!isValidBitsEmail(candidate)) {
-    setStatus("Enter a valid @online.bits-pilani.ac.in email.", "error");
+    setStatus("Enter a valid @*.bits-pilani.ac.in email.", "error");
     return;
   }
 
@@ -377,7 +378,7 @@ function attachEventListeners() {
     if (!selectors.emailInput) return;
     const email = sanitizeEmail(selectors.emailInput.value);
     if (!isValidBitsEmail(email)) {
-      setStatus("Use your @online.bits-pilani.ac.in email.", "error");
+      setStatus("Use your @*.bits-pilani.ac.in email.", "error");
       return;
     }
     state.email = email;
