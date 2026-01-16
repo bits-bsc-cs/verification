@@ -45,6 +45,10 @@ init_db()
 
 cors_origins = settings.allowed_cors_origins.split(",")
 
+origin = settings.allowed_cors_origin
+if origin:
+    cors_origins = list({*cors_origins, origin})
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,

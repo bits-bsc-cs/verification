@@ -1,7 +1,11 @@
 const API_DEFAULT_PORT = "5000";
+const isLocalHost =
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 const API_BASE_URL =
   window.API_BASE_URL ||
-  `${window.location.protocol}//${window.location.hostname}:${window.API_PORT || API_DEFAULT_PORT}`;
+  (isLocalHost
+    ? `${window.location.protocol}//${window.location.hostname}:${window.API_PORT || API_DEFAULT_PORT}`
+    : "");
 const EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@online\.bits-pilani\.ac\.in$/i;
 const REQUEST_BUTTON_TEXT = "Request OTP";
 

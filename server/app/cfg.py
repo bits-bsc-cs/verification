@@ -16,8 +16,9 @@ class Settings(BaseSettings):
     otp_expiry_mins: int = 10
     production: bool = os.getenv("PRODUCTION", "false").lower() == "true"
     allowed_cors_origins: str = os.getenv(
-        "ALLOWED_CORS_ORIGINS", "http://localhost,http://localhost:5000,*"
+        "ALLOWED_CORS_ORIGINS", "http://localhost,http://localhost:5000"
     )
+    allowed_cors_origin: str = os.getenv("ALLOWED_CORS_ORIGIN", "")
     ipc_secret: str = os.getenv("IPC_SECRET") or "default_secret"
     sender_email: str = (
         os.getenv("SENDER_EMAIL") or "Verification <onboarding@resend.dev>"
