@@ -1,28 +1,46 @@
-# BITS Student Community Verification
+# Verification System
+
+
+## About
+
+This is an AIO container that includes the site, the server, and the discord bot for verifying users
+onto a discord server through their email addresses.
+
 
 ## Usage
 
-This AIO container is built on python slim image and exposes two ports: 8000 for the frontend/client
-and 5000 for the backend/server.
+The container exposes the following sets of ports (set in the compose file).
+- 5000 ==> client side site
+- 8000 ==> server
+- 80, 443 ==> http connections
+- 81 ==> NPM (nginx) web UI
 
-Its not just recommended but important to put these behind nginx or nginx proxy manager.
 
-If you proxy `/verify*` paths to the backend port (5000) while serving static files on 8000, the existing frontend keeps working without code changes (js is using the browser's URL api to find the backend's url).
+## Nginx Part
 
-(Image has inbuilt NginxProxyManager which is accessible at <ip_of_host>:81. Used the gui image for ease of use and remote management.)
+Go to `http://<server ip>:81` on your web browser, then
+- sign up with a strong password and an email address (will be used by letsencrypt tls)
+- Add a proxy host for your site and point it to `http://verification:8000`
+- Go to custom locations pane in that proxy host setting.
+- In the custom locations, add the location path `/verify` with the forwarded route `http://verification:5000`
 
-For NPM, add a proxy host `example.com` -> `http://verification:8000` and a custom location `/verify` -> `http://verification:5000`, enable SSL, and toggle Force SSL/HTTP2 if desired.
+Make sure to enable security, certificates, and access lists according to your needs.
+
 
 ### Environment Configuration
-- Copy `server/.env.example` to `server/.env` and fill in Discord, Resend, and other secrets.
-- `docker-compose.yml` references `./server/.env` through `env_file`, so the same configuration powers both local dev and container runs.
+
+- Copy `.env.example` to your compose file's directory, and fill in Discord, Resend, and other secrets.
+- `docker-compose.yml` references `.env` through `env_file`, so the same configuration powers both local dev and container runs.
 - Server settings read env vars directly; `.env` is only a convenience for Compose.
 
 
-### Usage
-1. `cp server/.env.example server/.env` and populate secrets.
-2. `mkdir -p db npm/data npm/letsencrypt`.
-3. `docker compose up --build`.
-4. Log into NPM at `http://localhost:81` (default `admin@example.com` / `changeme`) and create the proxy host + `/verify` custom location.
-5. Open firewall ports `80`, `81`, `443` only; keep `8000`/`5000` internal.
-6. Visit `http://localhost:80` (or your domain) to reach the site, then shut down with `docker compose down`.
+### Notes
+- Currently, the db is sqlite. Don't expect hundreds of requests per minute.
+- Default site is the BITS Student Community Verification site.
+- The JavaScript of client is mostly AI made. @whiteboardguy is an htmx guy. Please give him bloat less lessons.
+
+- These notes above may change as different database, custom site, and other options may be added in the future. 
+
+
+## License
+[GNU](./LICENSE) extremism ftw.
